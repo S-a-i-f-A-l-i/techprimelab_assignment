@@ -1,11 +1,15 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const SharedLayout = () => {
   return (
     <div>
       <main>
-        <nav>Navbar</nav>
+        <nav>
+          <NavLink to="/">Dashboard</NavLink> &nbsp;
+          <NavLink to="/projects">Projects</NavLink> &nbsp;
+          <NavLink to="/create-project">Add Project</NavLink> &nbsp;
+        </nav>
         <div>
           <Outlet />
         </div>
