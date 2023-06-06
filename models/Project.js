@@ -44,11 +44,29 @@ const ProjectSchema = new mongoose.Schema(
       ],
       default: "strategy",
     },
-    startDate: {
+    location: {
       type: String,
-      required: [true, "Please select a date"],
-      enum: [],
-      default: "high",
+      required: [true, "Please provide location"],
+    },
+    status: {
+      type: String,
+      enum: ["registered", "running", "cancelled"],
+      default: "registered",
+    },
+    start: {
+      type: String,
+      required: [true, "Please select a start date"],
+      min: () => new Date().toISOString().split("T")[0],
+    },
+    end: {
+      type: String,
+      required: [true, "Please select a end date"],
+      validate: {
+        validator: function (value) {
+          return value >= this.start;
+        },
+        message: "End date cannot be earlier than the start date",
+      },
     },
     createdBy: {
       type: mongoose.Types.ObjectId,

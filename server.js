@@ -1,22 +1,25 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 dotenv.config();
 // routes
 import authRouter from "./routes/authRoutes.js";
+import projectRouter from "./routes/projectRoutes.js";
 
 // middleware
 import authenticateUser from "./middleware/auth.js";
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
-
-app.use("/auth", authRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome Dear!");
 });
+app.use("/auth", authRouter);
+app.use("/project", authenticateUser, projectRouter);
 
 const port = process.env.PORT || 8080;
 
