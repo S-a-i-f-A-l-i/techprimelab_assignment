@@ -54,9 +54,13 @@ const CreateProject = () => {
     e.preventDefault();
     console.log(token);
     try {
-      const res = await axios.post("http://localhost:8080/project/add", value, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.post(
+        "https://techprimelab-assignment-lmk9.onrender.com/project/add",
+        value,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       console.log(res);
       setValue(initialState);
       navigate("/projects");

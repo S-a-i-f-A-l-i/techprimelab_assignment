@@ -3,6 +3,10 @@ const initialState = {
   projects: [],
   numOfPages: 0,
   totalProjects: 0,
+  cancelled: 0,
+  running: 0,
+  closed: 0,
+  registered: 0,
 };
 
 const projectReducer = (state = initialState, action) => {
@@ -17,6 +21,10 @@ const projectReducer = (state = initialState, action) => {
     case GET_STATUS:
       return {
         ...state,
+        cancelled: action.payload.cancelled,
+        running: action.payload.running,
+        closed: action.payload.closed,
+        registered: action.payload.registered,
       };
     default:
       return state;

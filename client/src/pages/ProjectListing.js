@@ -20,7 +20,7 @@ const ProjectListing = () => {
   const getProjects = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8080/project/all?search=${search}&page=${currentPage}`,
+        `https://techprimelab-assignment-lmk9.onrender.com/project/all?search=${search}&page=${currentPage}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -36,7 +36,7 @@ const ProjectListing = () => {
   const handleClick = async (id, value) => {
     try {
       const res = await axios.patch(
-        `http://localhost:8080/project/all/${id}`,
+        `https://techprimelab-assignment-lmk9.onrender.com/project/all/${id}`,
         { status: value },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -105,7 +105,7 @@ const ProjectListing = () => {
                     </button>
                   </td>
                   <td>
-                    <button onClick={() => handleClick(item.id_id, "canceled")}>
+                    <button onClick={() => handleClick(item._id, "canceled")}>
                       Cancel
                     </button>
                   </td>

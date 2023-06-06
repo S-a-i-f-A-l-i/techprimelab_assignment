@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { loginAction } from "../redux/actions/authAction";
 const Login = () => {
   const [value, setValue] = useState({
     email: "",
     password: "",
   });
-  const user = useSelector((store) => store.authReducer.user);
   const dispatch = useDispatch();
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -23,7 +22,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8080/auth/login", value);
+      const res = await axios.post(
+        "https://techprimelab-assignment-lmk9.onrender.com/auth/login",
+        value
+      );
       loginAction(res.data, dispatch);
       setTimeout(() => {
         navigate("/");
@@ -36,9 +38,13 @@ const Login = () => {
       }, 4000);
     }
   };
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("user"))) {
+      navigate("/");
+    }
+  }, []);
   return (
     <div>
-      {user && <Navigate to="/" />}
       <form onSubmit={handleSubmit}>
         <h3>Login to get started</h3>
         <label>Email</label>
