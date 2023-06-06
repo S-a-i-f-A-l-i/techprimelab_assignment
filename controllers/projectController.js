@@ -28,8 +28,28 @@ const getAllProject = async (req, res) => {
 };
 
 const updateProject = async (req, res) => {
-  console.log("update project route called");
-  return res.status(200).json({ data: "OK" });
+  const { id: projectId } = req.params;
+  const { status } = req.body;
+  if (!status) {
+    return res.status(400).json({ error: "Please provide All Values" });
+  }
+  try {
+    const project = await Project.findOne({ _id: projectId });
+    if (!project) {
+      return res.status(404).json({ error: `No project with id ${projectId}` });
+    }
+    const updateProject = await Project.findOne(
+      { _id: projectId },
+      { status },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    res.status(200).json({ updateProject });
+  } catch (error) {
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 export { createProject, getAllProject, updateProject, showStatus };

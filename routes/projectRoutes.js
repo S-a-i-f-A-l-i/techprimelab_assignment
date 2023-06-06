@@ -11,6 +11,6 @@ import {
 router.route("/").get(showStatus);
 router.route("/add").post(createProject);
 router.route("/all").get(getAllProject);
-router.route("/all/:id").put(updateProject);
+router.route("/all/:id").patch(updateProject);
 
 export default router;
