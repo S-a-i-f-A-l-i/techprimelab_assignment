@@ -3,8 +3,26 @@ import Project from "../models/Project.js";
 import mongoose from "mongoose";
 
 const showStatus = async (req, res) => {
-  console.log("status projects route called");
-  res.status(200).json({ data: "OK" });
+  let status = await Project.aggregate([
+    { $match: { _id: { $exists: true } } },
+    { $group: { _id: "$status", count: { $sum: 1 } } },
+  ]);
+  console.log(status);
+  status = status.reduce((acc, curr) => {
+    const { _id: title, count } = curr;
+    acc[title] = count;
+    return acc;
+  }, {});
+  console.log(status);
+  const defaultStatus = {
+    // "registered", "running", "cancelled", "closed"
+    cancelled: status.cancelled || 0,
+    running: status.running || 0,
+    closed: status.closed || 0,
+    registered: status.registered || 0,
+    // total: this.cancelled + this.running + this.closed + this.registered,
+  };
+  return res.status(200).json({ defaultStatus });
 };
 
 const createProject = async (req, res) => {

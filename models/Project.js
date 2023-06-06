@@ -50,7 +50,7 @@ const ProjectSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["registered", "running", "cancelled"],
+      enum: ["registered", "running", "cancelled", "closed"],
       default: "registered",
     },
     start: {
