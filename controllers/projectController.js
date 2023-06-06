@@ -23,8 +23,27 @@ const createProject = async (req, res) => {
 };
 
 const getAllProject = async (req, res) => {
-  console.log("get all project route called");
-  return res.status(200).json({ data: "OK" });
+  const queryObject = {};
+  const { search } = req.query;
+  if (search) {
+    queryObject.name = { $regex: search, $options: "i" };
+    // queryObject.reason = { $regex: search, $options: "i" };
+    // queryObject.type = { $regex: search, $options: "i" };
+    // queryObject.division = { $regex: search, $options: "i" };
+    // queryObject.category = { $regex: search, $options: "i" };
+    // queryObject.priority = { $regex: search, $options: "i" };
+    // queryObject.department = { $regex: search, $options: "i" };
+    // queryObject.location = { $regex: search, $options: "i" };
+    // queryObject.status = { $regex: search, $options: "i" };
+  }
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 5;
+  const skip = (page - 1) * limit;
+  let result = await Project.find(queryObject).skip(skip).limit(limit);
+  const projects = await result;
+  const totalProjects = await Project.countDocuments(queryObject);
+  const numOfPages = Math.ceil(totalProjects / limit);
+  res.status(200).json({ projects, totalProjects, numOfPages });
 };
 
 const updateProject = async (req, res) => {
