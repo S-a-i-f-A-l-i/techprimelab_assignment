@@ -1,13 +1,23 @@
+import { GET_PROJECTS, GET_STATUS } from "../actions/action";
 const initialState = {
-  projects: null,
+  projects: [],
+  numOfPages: 0,
+  totalProjects: 0,
 };
 
 const projectReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD":
-      return { some: "something" };
-    case "DELETE":
-      return { some: "something" };
+    case GET_PROJECTS:
+      return {
+        ...state,
+        projects: action.payload.projects,
+        numOfPages: action.payload.numOfPages,
+        totalProjects: action.payload.totalProjects,
+      };
+    case GET_STATUS:
+      return {
+        ...state,
+      };
     default:
       return state;
   }

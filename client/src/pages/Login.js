@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,7 +8,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const user = useSelector((store) => store.user);
+  const user = useSelector((store) => store.authReducer.user);
   const dispatch = useDispatch();
   const [error, setError] = useState(false);
   const navigate = useNavigate();

@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import FormRowSelect from "../component/FormRowSelect";
-
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+const initialState = {
+  name: "",
+  reason: "business",
+  type: "internal",
+  division: "filters",
+  category: "quality A",
+  priority: "high",
+  department: "strategy",
+  start: "",
+  end: "",
+  location: "",
+  status: "registered",
+};
 const CreateProject = () => {
-  const [value, setValue] = useState({
-    name: "",
-    reason: "business",
-    type: "internal",
-    division: "filters",
-    category: "quality A",
-    priority: "high",
-    department: "strategy",
-    start: "",
-    end: "",
-    location: "",
-    status: "registered",
-  });
+  const [value, setValue] = useState(initialState);
 
   const reasonOptions = ["business", "dealership", "transport"];
   const projectTypeOptions = ["internal", "external", "vendor"];
@@ -45,10 +48,21 @@ const CreateProject = () => {
       };
     });
   };
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const token = useSelector((store) => store.authReducer.token);
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(Date());
-    console.log(value);
+    console.log(token);
+    try {
+      const res = await axios.post("http://localhost:8080/project/add", value, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log(res);
+      setValue(initialState);
+      navigate("/projects");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
@@ -117,6 +131,7 @@ const CreateProject = () => {
             name="location"
             value={value.location}
             onChange={handleProjectInput}
+            required={true}
           />
         </div>
         <div>
@@ -126,7 +141,8 @@ const CreateProject = () => {
             name="start"
             value={value.start}
             onChange={handleProjectInput}
-            min={new Date()}
+            min={new Date().toISOString().split("T")[0]}
+            required={true}
           />
         </div>
         <div>
@@ -137,6 +153,7 @@ const CreateProject = () => {
             value={value.end}
             onChange={handleProjectInput}
             min={value.start}
+            required={true}
           />
         </div>
         <button type="submit">Save Project</button>

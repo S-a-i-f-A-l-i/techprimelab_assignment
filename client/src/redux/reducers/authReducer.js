@@ -1,3 +1,5 @@
+import { LOGIN, LOGOUT } from "../actions/action";
+
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || {},
   token: JSON.parse(localStorage.getItem("token")) || "",
@@ -5,13 +7,13 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "LOGIN":
+    case LOGIN:
       return {
         ...state,
         user: action.payload.user,
         token: action.payload.token,
       };
-    case "LOGOUT":
+    case LOGOUT:
       return {
         ...state,
         user: {},

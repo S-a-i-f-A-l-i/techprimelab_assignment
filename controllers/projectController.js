@@ -7,15 +7,12 @@ const showStatus = async (req, res) => {
     { $match: { _id: { $exists: true } } },
     { $group: { _id: "$status", count: { $sum: 1 } } },
   ]);
-  console.log(status);
   status = status.reduce((acc, curr) => {
     const { _id: title, count } = curr;
     acc[title] = count;
     return acc;
   }, {});
-  console.log(status);
   const defaultStatus = {
-    // "registered", "running", "cancelled", "closed"
     cancelled: status.cancelled || 0,
     running: status.running || 0,
     closed: status.closed || 0,
@@ -75,7 +72,7 @@ const updateProject = async (req, res) => {
     if (!project) {
       return res.status(404).json({ error: `No project with id ${projectId}` });
     }
-    const updateProject = await Project.findOne(
+    const updateProject = await Project.findOneAndUpdate(
       { _id: projectId },
       { status },
       {
