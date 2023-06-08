@@ -7,6 +7,8 @@ import projectsActive from "../assets/images/Project-list-active.svg";
 import dashboard from "../assets/images/Dashboard.svg";
 import dashboardActive from "../assets/images/Dashboard-active.svg";
 import styles from "../assets/styles/SharedLayout.module.css";
+import Bg from "../assets/images/login-bg-1.svg";
+import logo from "../assets/images/Logo.svg";
 const SharedLayout = () => {
   const [dashActive, setDashActive] = useState(true);
   const [cActive, setCActive] = useState(false);
@@ -47,7 +49,14 @@ const SharedLayout = () => {
           &nbsp;
         </nav>
         <div>
-          <div>Nav here</div>
+          <div className={styles.navbar}>
+            <div>
+              <img src={Bg} alt="bg" />
+            </div>
+            <div>
+              <img src={logo} alt="logo" />
+            </div>
+          </div>
           <div>
             <Outlet />
           </div>
