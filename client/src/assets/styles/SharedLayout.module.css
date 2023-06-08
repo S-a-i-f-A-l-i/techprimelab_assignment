@@ -1,10 +1,10 @@
 .main { 
     display: flex;
-    gap: 15px;
+    /* gap: 15px; */
 }
 .main nav{
     display:flex;
-    gap:15px;
+    gap:10px;
     height: 100vh;
     padding: 10px;
     flex-direction: column;
@@ -55,4 +55,15 @@
         flex-shrink: 0;
         flex-basis: 10px;
     }
+    .navbar{
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        /* align-items: center; */
+        /* border-bottom-left-radius: 30px; */
+        /* border-radius: 30px; */
+        position: sticky;
+        top: 0px;
+    }
+    
 }

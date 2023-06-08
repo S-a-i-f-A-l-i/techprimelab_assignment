@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { getStatusAction } from "../redux/actions/projectAction";
+import styles from "../assets/styles/Dashboard.module.css";
 const Dashboard = () => {
   const token = useSelector((store) => store.authReducer.token);
   const [values, setValues] = useState({
@@ -30,29 +31,39 @@ const Dashboard = () => {
     getData();
   }, []);
   return (
-    <div>
+    <div className={styles.Wrapper}>
       <div>
-        <p>Total Projects</p>
-        <h3>
-          {values.registered +
-            values.running +
-            values.cancelled +
-            values.closed}
-        </h3>
+        <div>
+          <span>Total Projects</span>
+          <h3>
+            {values.registered +
+              values.running +
+              values.cancelled +
+              values.closed}
+          </h3>
+        </div>
+        <div>
+          <span>Closed</span>
+          <h3>{values.closed}</h3>
+        </div>
+        <div>
+          <span>Closed</span>
+          <h3>{values.closed}</h3>
+        </div>
+        <div>
+          <span>Running</span>
+          <h3>{values.running}</h3>
+        </div>
+        {/* <div><p>Closure Delay</p><h3>{}</h3></div> */}
+        <div>
+          <span>Cancelled</span>
+          <h3>{values.cancelled}</h3>
+        </div>
       </div>
       <div>
-        <p>Closed</p>
-        <h3>{values.closed}</h3>
+        <h2>Department wise Total Vs Closed</h2>
       </div>
-      <div>
-        <p>Running</p>
-        <h3>{values.running}</h3>
-      </div>
-      {/* <div><p>Closure Delay</p><h3>{}</h3></div> */}
-      <div>
-        <p>Cancelled</p>
-        <h3>{values.cancelled}</h3>
-      </div>
+      <div>Chart here</div>
     </div>
   );
 };
