@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getProjectAction } from "../redux/actions/projectAction";
 import PaginationButton from "../component/PaginationButton";
 
 const ProjectListing = () => {
+  const timerId = useRef();
   const [projects, setProjects] = useState({
     projects: [],
     numOfPages: 0,
@@ -28,6 +29,9 @@ const ProjectListing = () => {
       console.log(res);
       if (JSON.stringify(projects) !== JSON.stringify(res.data))
         setProjects(res.data);
+      if (res.data.numOfPages !== currentPage) {
+        setCurrentPage(1);
+      }
       getProjectAction(res.data, dispatch);
     } catch (error) {
       console.log(error);
@@ -48,6 +52,16 @@ const ProjectListing = () => {
       console.log(error);
     }
   };
+  const debounce = () => {
+    return (e) => {
+      setSearch(() => e.target.value);
+      clearTimeout(timerId.current);
+      timerId.current = setTimeout(() => {
+        getProjects();
+      }, 1000);
+    };
+  };
+  const optimizedDebounce = useMemo(() => debounce(), []);
   useEffect(() => {
     getProjects();
   }, [projects, currentPage]);
@@ -58,11 +72,7 @@ const ProjectListing = () => {
           type="text"
           name="search"
           value={search}
-          onChange={(e) => {
-            console.log(e.target.value);
-            setSearch(() => e.target.value);
-            getProjects();
-          }}
+          onChange={optimizedDebounce}
         />
         <br />
       </div>
@@ -127,6 +137,7 @@ const ProjectListing = () => {
             key={index}
             page={item}
             handlePage={setCurrentPage}
+            // currentPage={currentPage}
           />
         );
       })}

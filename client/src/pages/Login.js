@@ -45,9 +45,15 @@ const Login = () => {
   }, []);
   return (
     <div>
+      <p>
+        <span>Login Email: kiran.gosavi@techprimelab.com</span>
+        <br />
+        <span>Login Pass: mypass321</span>
+      </p>
       <form onSubmit={handleSubmit}>
         <h3>Login to get started</h3>
         <label>Email</label>
+        <br />
         <input
           type="email"
           name="email"
@@ -55,7 +61,9 @@ const Login = () => {
           value={value.email}
           required={true}
         />
+        <br />
         <label>Password</label>
+        <br />
         <input
           type="password"
           name="password"
@@ -63,6 +71,7 @@ const Login = () => {
           value={value.password}
           required={true}
         />
+        <br />
         <input type="submit" />
       </form>
       {error && <h4 style={{ color: "red" }}>Invalid Credentials</h4>}
