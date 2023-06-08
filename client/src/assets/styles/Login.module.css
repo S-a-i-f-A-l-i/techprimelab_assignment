@@ -1,0 +1,47 @@
+.container{
+    margin-bottom: 10px;
+}
+.container > img {
+    margin: 0;
+    width: 100vw;
+    display: block;
+    overflow: hidden;
+}
+.container > div{
+    margin-top: -28%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h4{
+    color:white;
+    margin: 0px 0px;
+}
+
+form{
+    /* text-align: center; */
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    padding: 50px;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 15px;
+}
+form input{
+    margin-bottom: 25px;
+    padding: 5px 30px;
+    border-radius: 8px;
+    text-align: left;
+}
+form input[type="submit"]{
+    background-color: blue;
+    border-radius: 50px;
+    padding: 7px 30px;
+    border: none;
+    margin-left: 26%;
+}
+
+@media screen and (max-width: 500px) {
+    
+  }
