@@ -73,7 +73,7 @@
     .container input[type="text"],
     .container select,
     .container button{
-        width: 68vh;
+        width: 80%;
     }
     .container form+p{
         text-align: left;
