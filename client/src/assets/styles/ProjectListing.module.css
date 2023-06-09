@@ -1,0 +1,123 @@
+.Wrapper{
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    border-radius: 10px;
+    width: 95%;
+    background-color: white;
+    margin: auto;
+    padding: 10px;
+}
+.container{
+    display: none;
+}
+.Wrapper input{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.Wrapper thead{
+    background-color: rgb(33, 161, 161);
+    border-collapse: collapse;
+    
+}
+.Wrapper table {
+    border-collapse: collapse;
+    text-align: center;
+}
+.Wrapper table tbody td{
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid teal;
+}
+.Wrapper tbody button{
+    border-radius: 20px;
+    border-color: blue;
+    background-color: white;
+    color: blue;
+}
+.Wrapper tbody td:nth-child(10) button{
+    background-color: blue;
+    color: white;
+}
+.Wrapper > div:last-child{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+}
+.Wrapper > div:last-child button{
+    border: none;
+    border-radius: 100%;
+    padding: 8px;
+}
+
+@media screen and (max-width: 500px) {
+    .Wrapper{
+        display: none;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        z-index: -1;
+        background-color: white;
+        gap: 10px;
+        margin-top: 50px;
+        text-transform: capitalize;
+        padding: 20px;
+    }
+    .container> div:nth-child(2){
+        gap:10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .container > div:nth-child(2) > div{
+        gap:10px;
+        display: flex;
+        flex-direction: column;
+        padding: 0px  10px 10px 10px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    .container input{
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+    .container > div:nth-child(2) > div > div:first-child{
+        display: flex;
+        justify-content: space-between;
+        margin: -10px 0px;
+        margin-bottom: -30px;
+    }
+    .container > div:nth-child(2) > div > div:last-child{
+        display: flex;
+        justify-content: space-around;
+    }
+    .container > div:nth-child(2) > div > div:last-child button{
+        border-radius: 20px;
+        padding: 5px 10px;
+    }
+    .container > div:nth-child(2) > div > div:last-child button:first-child{
+        color: white;
+        border-color: blue;
+        background-color: blue;
+    }
+    .container > div:last-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        padding: 10px;
+    }
+    .container > div:last-child button{
+        border: none;
+        border-radius: 100%;
+        padding: 8px;
+    }
+}

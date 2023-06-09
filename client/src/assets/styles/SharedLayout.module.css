@@ -38,7 +38,7 @@
     position: relative;
     z-index: 2;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 499px) {
     .main{
         display: flex;
         flex-direction: column-reverse;
@@ -58,12 +58,14 @@
     .navbar{
         display: flex;
         flex-direction: column;
+        height: 10vh;
         /* justify-content: center; */
         /* align-items: center; */
         /* border-bottom-left-radius: 30px; */
         /* border-radius: 30px; */
         position: sticky;
         top: 0px;
+        z-index: 10;
     }
     
 }
