@@ -1,0 +1,82 @@
+.container{
+    display: flex;
+    margin: auto;
+    margin-top: 13px;
+    width: 95%;
+    height: 150%;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    position: relative;
+    bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.container > form{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(4,1fr);
+    justify-content: space-evenly;
+    gap: 25px;
+    padding: 10px;
+    align-items: center;
+    text-transform: capitalize;
+    position: relative;
+    height: auto;
+}
+.container form div:nth-child(1){
+    grid-column: 1 / span 2;
+    grid-row: 1;
+}
+.container form button:nth-child(11){
+    grid-column: 3;
+    grid-row: 1;
+    border: none;
+    background-color: blue;
+    border-radius: 50px;
+    padding: 5px 10px;
+}
+
+.container label{
+    display: block;
+}
+.container input,select{
+    width: 100%;
+    height: max-content;
+    display: block;
+    padding: 5px;
+    text-transform: capitalize;
+}
+.container option{
+    text-transform: capitalize;
+}
+.container > form >div:first-child{
+    display: block;
+}
+.container input[type="date"],
+.container input[type="text"]{
+    width: 96%;
+}
+
+.container form + p{
+    text-align: right;
+}
+
+@media screen and (max-width: 499px) {
+    
+    .container form{
+        display: flex;
+        flex-direction: column;
+    }
+    .container input,
+    .container input[type="date"],
+    .container input[type="text"],
+    .container select,
+    .container button{
+        width: 68vh;
+    }
+    .container form+p{
+        text-align: left;
+    }
+    
+}

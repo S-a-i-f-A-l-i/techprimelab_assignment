@@ -3,6 +3,8 @@ import FormRowSelect from "../component/FormRowSelect";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import styles from "../assets/styles/CreateProject.module.css";
+
 const initialState = {
   name: "",
   reason: "business",
@@ -69,15 +71,16 @@ const CreateProject = () => {
     }
   };
   return (
-    <div>
+    <div className={styles.container}>
       <form onSubmit={handleSubmit}>
         <div>
           <input
             name="name"
-            type="text"
+            type="search"
             value={value.name}
             onChange={handleProjectInput}
             required={true}
+            placeholder="Enter Project Theme"
           />
         </div>
         <FormRowSelect
