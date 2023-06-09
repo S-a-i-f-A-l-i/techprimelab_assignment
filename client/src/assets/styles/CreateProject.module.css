@@ -67,13 +67,19 @@
     .container form{
         display: flex;
         flex-direction: column;
+        margin-top: 30px;
+    }
+    .container form > div{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
     }
     .container input,
     .container input[type="date"],
     .container input[type="text"],
     .container select,
     .container button{
-        width: 80%;
+        width: 98%;
     }
     .container form+p{
         text-align: left;
